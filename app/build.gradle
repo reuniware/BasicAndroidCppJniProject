@@ -41,8 +41,6 @@ android {
         //prefab true       // error : Gradle DSL method not found: 'prefab()'
     //}
 
-    defaultConfig {
-    }
 }
 
 dependencies {

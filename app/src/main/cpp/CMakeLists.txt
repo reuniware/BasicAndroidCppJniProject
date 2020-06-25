@@ -5,6 +5,22 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+# <Begin> OBOE SPECIFIC
+# Set the path to the Oboe directory.
+set (OBOE_DIR "../../../../../oboe")
+
+# Add the Oboe library as a subdirectory in your project.
+# add_subdirectory tells CMake to look in this directory to
+# compile oboe source files using oboe's CMake file.
+# ./oboe specifies where the compiled binaries will be stored
+add_subdirectory (${OBOE_DIR} ./oboe)
+
+# Specify the path to the Oboe header files.
+# This allows targets compiled with this CMake (application code)
+# to see public Oboe headers, in order to access its API.
+include_directories (${OBOE_DIR}/include)
+# <End> OBOE SPECIFIC
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -37,8 +53,14 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       native-lib
+                       native-lib oboe # "oboe" has been added here
 
                        # Links the target library to the log library
                        # included in the NDK.
-                       ${log-lib} )
+                       ${log-lib}
+        )
+
+#find_package (oboe REQUIRED CONFIG)
+#target_link_libraries(app oboe::oboe) # You may have other libraries here such as `log`.
+
+

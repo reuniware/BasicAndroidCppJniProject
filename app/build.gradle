@@ -36,7 +36,7 @@ android {
         }
     }
 
-    // for oboe test
+    // for oboe test : this has been done in gradle.properties (android.enablePrefab=true)
     //buildFeatures {
         //prefab true       // error : Gradle DSL method not found: 'prefab()'
     //}
@@ -52,5 +52,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.oboe:oboe:1.4.2'
+    //implementation 'com.google.oboe:oboe:1.4.2'
 }

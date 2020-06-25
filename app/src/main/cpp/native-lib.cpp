@@ -1,5 +1,6 @@
 #include <jni.h>
 #include <string>
+#include <oboe/Oboe.h>
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_stringFromJNI(
@@ -8,3 +9,4 @@ Java_com_example_myapplication_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+

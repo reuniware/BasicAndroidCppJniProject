@@ -7,6 +7,11 @@ Above all in the gradle.properties file, I have added "android.enablePrefab=true
 
 Then I have followed the procedure "Option 2) Building from source" at https://github.com/google/oboe/blob/master/docs/GettingStarted.md
 
+Then I have added the following lines in the CMakeLists.txt :
+  - set (OBOE_DIR "../../../../../oboe") # Specific to where OBOE has been cloned
+  - add_subdirectory (${OBOE_DIR} ./oboe)
+  - include_directories (${OBOE_DIR}/include)
+
 Then I have made all necessary changes to the Android project in order to have the OboeSinePlayer class work, that is given as an example on the same page in the Example section at  https://github.com/google/oboe/blob/master/docs/GettingStarted.md (*1)
 
 After that, the work that has been done to have OBOE working is the following :

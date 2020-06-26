@@ -26,6 +26,8 @@ After that, the work that has been done to have OBOE working is the following :
 
 This is very rudimentary, very basic, but keep in mind that I have done all that in order to understand how to have Android NDK working, and to understand how to import an external C++ project (Google OBOE here) in an existing one.
 
+All that is very far from being perfect !
+
 I hope that I have forgotten nothing and that it will help you !
 
 Feel free to contact me at investdatasystems@yahoo.com

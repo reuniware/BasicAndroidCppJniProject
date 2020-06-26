@@ -15,6 +15,8 @@ After that, the work that has been done to have OBOE working is the following :
 - In the CMakeLists.txt, adding of OboeSinePlayer in the target_link_libraries command
 - In native-lib.cpp, adding of the JNIEXPORT for MainActivity.myOboeSinePlayerCaller(JNIEnv * env, jobject MainActivity)
 
+  MainActivity.myOboeSinePlayerCaller <=> Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller
+
   This function initializes the oboe::DefaultStreamValues SampleRate and FramesPerBurst
   And then instantiates the OboeSinePlayer() class
   

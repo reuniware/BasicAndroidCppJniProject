@@ -2,6 +2,7 @@
 #include <string>
 #include <oboe/Oboe.h>
 #include "OboeSinePlayer.h"
+#include "OboeSinePlayer.cpp"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_stringFromJNI(
@@ -20,6 +21,8 @@ JNIEXPORT jboolean JNICALL
 
     oboe::DefaultStreamValues::SampleRate = (int32_t) 44100;
     oboe::DefaultStreamValues::FramesPerBurst = (int32_t) 1;
+
+    auto a = new OboeSinePlayer();
 
     return true;
 }

@@ -19,8 +19,8 @@ JNIEXPORT jboolean JNICALL
                 jobject) {
 // TODO: implement myOboeSinePlayerCaller()
 
-    oboe::DefaultStreamValues::SampleRate = (int32_t) 44100;
-    oboe::DefaultStreamValues::FramesPerBurst = (int32_t) 1;
+    oboe::DefaultStreamValues::SampleRate = (int32_t) 48000;
+    oboe::DefaultStreamValues::FramesPerBurst = (int32_t) 16;
 
     auto a = new OboeSinePlayer();
 

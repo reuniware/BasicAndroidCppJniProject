@@ -20,7 +20,7 @@ public:
     }
 
     oboe::DataCallbackResult onAudioReady(oboe::AudioStream *oboeStream, void *audioData, int32_t numFrames) override {
-        float *floatData = (float *) audioData;
+        auto floatData = (float *) audioData;
         for (int i = 0; i < numFrames; ++i) {
             float sampleValue = kAmplitude * sinf(mPhase);
             for (int j = 0; j < kChannelCount; j++) {

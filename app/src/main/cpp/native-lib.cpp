@@ -10,3 +10,8 @@ Java_com_example_myapplication_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+
+extern "C" JNIEXPORT jboolean JNICALL
+MyOboeSinePlayerCaller(JNIEnv *env, jclass) {
+    return true;
+}

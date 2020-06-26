@@ -3,8 +3,6 @@
 #include <oboe/Oboe.h>
 #include "OboeSinePlayer.h"
 
-
-
 class OboeSinePlayer: public oboe::AudioStreamCallback {
 public:
     OboeSinePlayer() {

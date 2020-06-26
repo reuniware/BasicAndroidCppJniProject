@@ -3,10 +3,10 @@
 #include <oboe/Oboe.h>
 #include "OboeSinePlayer.h"
 
+
+
 class OboeSinePlayer: public oboe::AudioStreamCallback {
 public:
-
-
     OboeSinePlayer() {
         oboe::AudioStreamBuilder builder;
         // The builder set methods can be chained for convenience.

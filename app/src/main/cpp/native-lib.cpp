@@ -12,12 +12,10 @@ Java_com_example_myapplication_MainActivity_stringFromJNI(
     return env->NewStringUTF(hello.c_str());
 }
 
-extern "C"
-JNIEXPORT jboolean JNICALL
-        Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
-                JNIEnv * env,
-                jobject) {
-// TODO: implement myOboeSinePlayerCaller()
+extern "C" JNIEXPORT jboolean JNICALL
+Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
+        JNIEnv * env,
+        jobject) {
 
     oboe::DefaultStreamValues::SampleRate = (int32_t) 48000;
     oboe::DefaultStreamValues::FramesPerBurst = (int32_t) 16;

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             val defaultSampleRate = sampleRateStr.toInt()
             val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
             val defaultFramesPerBurst = framesPerBurstStr.toInt()
-            myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst);
+            myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst, 258.0F);
         }
     }
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
      */
     external fun stringFromJNI(): String
 
-    external fun myOboeSinePlayerCaller(sampleRate: Int, framesPerBurst: Int): Boolean
+    external fun myOboeSinePlayerCaller(sampleRate: Int, framesPerBurst: Int, freq: Float): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.

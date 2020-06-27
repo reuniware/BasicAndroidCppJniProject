@@ -17,7 +17,8 @@ Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
         JNIEnv * env,
         jobject,
         jint sampleRate,
-        jint framesPerBurst) {
+        jint framesPerBurst,
+        jfloat freq) {
 
     oboe::DefaultStreamValues::SampleRate = (int32_t) sampleRate;
     oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
@@ -26,10 +27,10 @@ Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
     static int constexpr kSampleRate = 48000;
     // Wave params, these could be instance variables in order to modify at runtime
     float constexpr kAmplitude = 0.5f;
-    float constexpr kFrequency = 800;
+    float kFrequency = freq;
     static float constexpr kPI = M_PI;
     static float constexpr kTwoPi = kPI * 2;
-    static double constexpr mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
+    double mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
     auto a = new OboeSinePlayer(kChannelCount, kSampleRate, kAmplitude, kFrequency, kPI, kTwoPi, mPhaseIncrement);
 
     return true;

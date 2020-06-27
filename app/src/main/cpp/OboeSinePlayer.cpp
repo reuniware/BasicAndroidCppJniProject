@@ -3,9 +3,14 @@
 #include <oboe/Oboe.h>
 #include "OboeSinePlayer.h"
 
+float kFrequency;
+
 class OboeSinePlayer: public oboe::AudioStreamCallback {
 public:
-    OboeSinePlayer() {
+    explicit OboeSinePlayer(float freq) {
+
+        kFrequency = freq;
+
         oboe::AudioStreamBuilder builder;
         // The builder set methods can be chained for convenience.
         builder.setSharingMode(oboe::SharingMode::Exclusive)
@@ -26,7 +31,7 @@ public:
             for (int j = 0; j < kChannelCount; j++) {
                 floatData[i * kChannelCount + j] = sampleValue;
             }
-            mPhase += mPhaseIncrement;
+            mPhase += (float) mPhaseIncrement;
             if (mPhase >= kTwoPi) mPhase -= kTwoPi;
         }
         return oboe::DataCallbackResult::Continue;
@@ -39,10 +44,9 @@ private:
     static int constexpr kSampleRate = 48000;
     // Wave params, these could be instance variables in order to modify at runtime
     static float constexpr kAmplitude = 0.5f;
-    static float constexpr kFrequency = 432;
     static float constexpr kPI = M_PI;
     static float constexpr kTwoPi = kPI * 2;
-    static double constexpr mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
+    double mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
     // Keeps track of where the wave is
     float mPhase = 0.0;
 };

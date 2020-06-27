@@ -22,7 +22,7 @@ Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
     oboe::DefaultStreamValues::SampleRate = (int32_t) sampleRate;
     oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
 
-    auto a = new OboeSinePlayer();
+    auto a = new OboeSinePlayer(800);
 
     return true;
 }

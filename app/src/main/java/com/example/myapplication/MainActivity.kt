@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
@@ -9,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,13 +18,20 @@ class MainActivity : AppCompatActivity() {
         // Example of a call to a native method
         sample_text.text = stringFromJNI()
 
+        editTextFreq.setText("432");
+
         buttonPlaySineWave.setOnClickListener {
-            val myAudioMgr = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-            val sampleRateStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-            val defaultSampleRate = sampleRateStr.toInt()
-            val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
-            val defaultFramesPerBurst = framesPerBurstStr.toInt()
-            myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst, 258.0F);
+            var freq = 0.0F;
+            if (!editTextFreq.text.trim().isEmpty()) {
+                freq = editTextFreq.text.toString().toFloat();
+                val myAudioMgr = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                val sampleRateStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+                val defaultSampleRate = sampleRateStr.toInt()
+                val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
+                val defaultFramesPerBurst = framesPerBurstStr.toInt()
+                myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst, freq);
+            }
+
         }
     }
 

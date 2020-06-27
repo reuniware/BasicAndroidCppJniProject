@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,7 +17,12 @@ class MainActivity : AppCompatActivity() {
         sample_text.text = stringFromJNI()
 
         buttonPlaySineWave.setOnClickListener {
-            myOboeSinePlayerCaller();
+            val myAudioMgr = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            val sampleRateStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+            val defaultSampleRate = sampleRateStr.toInt()
+            val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
+            val defaultFramesPerBurst = framesPerBurstStr.toInt()
+            myOboeSinePlayerCaller(defaultSampleRate, framesPerBurstStr.toInt());
         }
     }
 
@@ -25,7 +32,7 @@ class MainActivity : AppCompatActivity() {
      */
     external fun stringFromJNI(): String
 
-    external fun myOboeSinePlayerCaller(): Boolean
+    external fun myOboeSinePlayerCaller(sampleRate: Int, framesPerBurst: Int): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.

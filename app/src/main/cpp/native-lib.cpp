@@ -15,10 +15,12 @@ Java_com_example_myapplication_MainActivity_stringFromJNI(
 extern "C" JNIEXPORT jboolean JNICALL
 Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
         JNIEnv * env,
-        jobject) {
+        jobject,
+        jint sampleRate,
+        jint framesPerBurst) {
 
-    oboe::DefaultStreamValues::SampleRate = (int32_t) 48000;
-    oboe::DefaultStreamValues::FramesPerBurst = (int32_t) 16;
+    oboe::DefaultStreamValues::SampleRate = (int32_t) sampleRate;
+    oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
 
     auto a = new OboeSinePlayer();
 

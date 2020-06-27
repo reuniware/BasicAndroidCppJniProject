@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             val defaultSampleRate = sampleRateStr.toInt()
             val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
             val defaultFramesPerBurst = framesPerBurstStr.toInt()
-            myOboeSinePlayerCaller(defaultSampleRate, framesPerBurstStr.toInt());
+            myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst);
         }
     }
 

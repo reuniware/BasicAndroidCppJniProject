@@ -1,10 +1,15 @@
 package com.example.myapplication
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -29,9 +34,39 @@ class MainActivity : AppCompatActivity() {
                 val defaultSampleRate = sampleRateStr.toInt()
                 val framesPerBurstStr = myAudioMgr.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
                 val defaultFramesPerBurst = framesPerBurstStr.toInt()
-                myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst, freq);
+                myOboeSinePlayerCaller(defaultSampleRate, defaultFramesPerBurst, freq)
+
+                //val devices = myAudioMgr.getDevices(AudioManager.GET_DEVICES_INPUTS) // 0 = mic ; 1 = telephony_rx (on Samsung A3)
+                //Log.i("", "${devices.size}")
+            }
+        }
+
+        buttonRecordAudio.setOnClickListener {
+
+            val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                Log.i("", "Permission to record denied")
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_REQUEST_CODE)
+            } else {
+                myOboeAudioRecorder()
             }
 
+        }
+    }
+
+    val RECORD_REQUEST_CODE = 1234
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            RECORD_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    Log.i("", "Permission has been denied by user")
+                } else {
+                    Log.i("", "Permission has been granted by user")
+                    myOboeAudioRecorder()
+                }
+            }
         }
     }
 
@@ -42,6 +77,8 @@ class MainActivity : AppCompatActivity() {
     external fun stringFromJNI(): String
 
     external fun myOboeSinePlayerCaller(sampleRate: Int, framesPerBurst: Int, freq: Float): Boolean
+
+    external fun myOboeAudioRecorder(): Boolean
 
     companion object {
         // Used to load the 'native-lib' library on application startup.

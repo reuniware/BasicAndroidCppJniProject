@@ -58,7 +58,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       native-lib oboe OboeSinePlayer # "oboe" has been added here
+                       native-lib oboe OboeSinePlayer# "oboe" has been added here
 
 
                        # Links the target library to the log library

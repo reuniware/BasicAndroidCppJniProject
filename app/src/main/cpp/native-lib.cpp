@@ -22,7 +22,16 @@ Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
     oboe::DefaultStreamValues::SampleRate = (int32_t) sampleRate;
     oboe::DefaultStreamValues::FramesPerBurst = (int32_t) framesPerBurst;
 
-    auto a = new OboeSinePlayer();
+    static int constexpr kChannelCount = 2;
+    static int constexpr kSampleRate = 48000;
+    // Wave params, these could be instance variables in order to modify at runtime
+    float constexpr kAmplitude = 0.5f;
+    float constexpr kFrequency = 800;
+    static float constexpr kPI = M_PI;
+    static float constexpr kTwoPi = kPI * 2;
+    static double constexpr mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
+
+    auto a = new OboeSinePlayer(kChannelCount, kSampleRate, kAmplitude, kFrequency, kPI, kTwoPi, mPhaseIncrement);
 
     return true;
 }

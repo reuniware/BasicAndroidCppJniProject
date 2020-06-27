@@ -9,14 +9,16 @@ public:
     float kAmplitude;
     float mPhase = 0.0;
     int kChannelCount;
-    double mPhaseIncrement;
+    float kPI;
     float kTwoPi;
+    double mPhaseIncrement;
 
     explicit OboeSinePlayer(int kChannelCount, int kSampleRate, float kAmplitude, float kFrequency, float kPI, float kTwoPi, double mPhaseIncrement) {
 
         this->kAmplitude = kAmplitude;
         this->kChannelCount = kChannelCount;
         this->mPhaseIncrement = mPhaseIncrement;
+        this->kPI = kPI;
         this->kTwoPi = kTwoPi;
 
         oboe::AudioStreamBuilder builder;

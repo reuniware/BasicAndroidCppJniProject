@@ -30,7 +30,6 @@ Java_com_example_myapplication_MainActivity_myOboeSinePlayerCaller(
     static float constexpr kPI = M_PI;
     static float constexpr kTwoPi = kPI * 2;
     static double constexpr mPhaseIncrement = kFrequency * kTwoPi / (double) kSampleRate;
-
     auto a = new OboeSinePlayer(kChannelCount, kSampleRate, kAmplitude, kFrequency, kPI, kTwoPi, mPhaseIncrement);
 
     return true;

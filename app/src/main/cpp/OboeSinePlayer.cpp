@@ -15,7 +15,6 @@ public:
     explicit OboeSinePlayer(int kChannelCount, int kSampleRate, float kAmplitude, float kFrequency, float kPI, float kTwoPi, double mPhaseIncrement) {
 
         this->kAmplitude = kAmplitude;
-        /*this->mPhase = mPhase;*/
         this->kChannelCount = kChannelCount;
         this->mPhaseIncrement = mPhaseIncrement;
         this->kTwoPi = kTwoPi;
@@ -40,7 +39,7 @@ public:
             for (int j = 0; j < kChannelCount; j++) {
                 floatData[i * kChannelCount + j] = sampleValue;
             }
-            mPhase += mPhaseIncrement;
+            mPhase += (float) mPhaseIncrement;
             if (mPhase >= kTwoPi) mPhase -= kTwoPi;
         }
         return oboe::DataCallbackResult::Continue;
